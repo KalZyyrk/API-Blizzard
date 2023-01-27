@@ -4,12 +4,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-data = {
-    'grant_type': 'client_credentials',
-}
+def getAccessToken():
+    res = requests.post('https://oauth.battle.net/token', data={'grant_type': 'client_credentials', }, auth=(
+        os.environ["CLIENT-ID"], os.environ["CLIENT-SECRET"]))
+    return res.json()['access_token']
 
-res = requests.post('https://oauth.battle.net/token', data=data, auth=(
-    os.environ["CLIENT-ID"], os.environ["CLIENT-SECRET"]))
-response = res.json()
 
-print(response)
+token = getAccessToken()
