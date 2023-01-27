@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 async function getAccesToken() {
     const auth = await fetch("https://oauth.battle.net/token", {
         body: "grant_type=client_credentials",
         headers: {
-            Authorization: "Basic M2VlZDdjMzRjN2I4NDJjMWJmZGQzYzZlMGI4YTJmMjA6dTc1eEtXWVYwSE5BcjRjYWpwVUU3V3pzSE5uT2hXblU=",
+            Authorization: process.env.AUTH,
             "Content-Type": "application/x-www-form-urlencoded"
         },
         method: "POST"
